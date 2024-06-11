@@ -165,7 +165,8 @@ function MainPage() {
               const text = lines.join(' ');
 
               // match the facility id using regex
-              const regex = /(\d{8}\.\d+)\s+(\d+)/;
+              const regex = /(\d{8}\.\d+)\s+(\d+)/; 
+              // this line gets the 8 digit number followed by a period and another number after it, that number after we want to get and merge thnose together into one const 
               const matches = text.match(regex);
               // get the facility id, and if it's not found, set it to null
               let facilityId = null;
