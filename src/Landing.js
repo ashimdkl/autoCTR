@@ -19,6 +19,9 @@ function Landing() {
         <button className="button" onClick={() => navigateTo('/mainPage')}>
           Automatic CTR
         </button>
+        <button className="button" onClick={() => navigateTo('/Info')}>
+          Software Tutorial
+        </button>
       </div>
     </div>
   );

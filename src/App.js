@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LandingPage from './Landing';
 import MainPage from './MainPage';
 import GeneralOrder from './GeneralOrder';
+import InfoPage from './Info';
 import './App.css';
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/mainPage" element={<MainPage />} />
             <Route path="/generalOrder" element={<GeneralOrder />} />
+            <Route path="/Info" element={<InfoPage />} />
           </Routes>
         )}
         <h5 style={{ position: 'absolute', bottom: '0', left: '0' }}>created by ashim dhakal.</h5>

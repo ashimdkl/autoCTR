@@ -1,0 +1,45 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+.info-page {
+    @apply max-w-4xl w-full py-10 px-5 bg-gray-100 rounded-lg shadow-md;
+}
+
+h1 {
+    @apply text-3xl font-bold text-center text-gray-800 mb-6;
+}
+
+.tutorial-section h2 {
+    @apply text-xl font-bold text-gray-700 mb-3;
+}
+
+.tutorial-section ol {
+    @apply list-decimal list-inside;
+}
+
+.tutorial-section li {
+    @apply mb-3;
+}
+
+.tutorial-section li strong {
+    @apply text-base font-semibold text-gray-800;
+}
+
+.tutorial-section li p {
+    @apply text-gray-700 ml-4;
+}
+
+.navigation-links {
+    @apply mt-8 text-center;
+}
+
+.navigation-links a {
+    @apply text-blue-500 hover:text-blue-700;
+}
+
+.navigation-links a + a {
+    @apply ml-3;
+}
+
