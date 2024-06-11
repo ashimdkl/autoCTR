@@ -1,0 +1,41 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.data-page {
+  @apply max-w-4xl mx-auto py-10 px-5;
+}
+
+.dropzone {
+  @apply flex items-center justify-center border-4 border-dashed border-gray-300 rounded-lg p-6 mb-6 bg-white;
+}
+
+.dropzone:hover {
+  @apply bg-gray-200 cursor-pointer;
+}
+
+.dropzone p {
+  @apply text-gray-500 text-lg;
+}
+
+.loading,
+.success-message {
+  @apply text-center text-xl text-gray-700 mt-6;
+}
+
+.loading {
+  @apply animate-pulse;
+}
+
+.success-message {
+  @apply text-green-500;
+}
+
+/* Button Styles */
+button {
+  @apply py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg cursor-pointer mt-4;
+}
+
+button + button {
+  @apply ml-4;
+}

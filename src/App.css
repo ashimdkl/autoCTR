@@ -6,6 +6,32 @@ html, body {
   @apply bg-gray-100 font-sans leading-normal tracking-normal;
 }
 
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  @apply bg-gray-100;
+}
+
+/* Authentication Screen */
+.authentication {
+  @apply bg-white p-6 rounded-lg shadow-md w-full max-w-sm text-center;
+}
+
+.authentication h1 {
+  @apply text-2xl font-bold text-gray-800 mb-6;
+}
+
+.authentication input[type="password"] {
+  @apply w-full p-3 mb-4 border border-gray-300 rounded-lg;
+}
+
+.authentication button {
+  @apply w-full py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg cursor-pointer;
+}
+
+/* Data Page */
 .data-page {
   @apply max-w-4xl mx-auto py-10 px-5;
 }
@@ -14,6 +40,7 @@ h1 {
   @apply text-4xl font-bold text-center text-gray-800 mb-6;
 }
 
+/* Dropzone */
 .dropzone {
   @apply flex items-center justify-center border-4 border-dashed border-gray-300 rounded-lg p-6 mb-6 bg-white;
 }
@@ -26,15 +53,57 @@ h1 {
   @apply text-gray-500 text-lg;
 }
 
-.loading,
-.success-message {
+/* Messages */
+.message {
   @apply text-center text-xl text-gray-700 mt-6;
 }
 
 .loading {
-  @apply animate-pulse;
+  @apply animate-pulse text-blue-500;
 }
 
-.success-message {
+.success {
   @apply text-green-500;
+}
+
+/* Facility Dialog */
+.facility-dialog {
+  @apply bg-white rounded-lg shadow-md p-6 mb-6 max-w-lg mx-auto;
+}
+
+.facility-dialog h2 {
+  @apply text-2xl font-bold text-gray-800 mb-4;
+}
+
+.facility-dialog textarea {
+  @apply w-full h-40 p-3 mb-4 border border-gray-300 rounded-lg;
+}
+
+.facility-dialog button {
+  @apply w-full py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg cursor-pointer;
+}
+
+/* Results Table */
+.results {
+  @apply mt-8;
+}
+
+.results table {
+  @apply w-full border-collapse bg-white shadow-md rounded-lg;
+}
+
+.results th, .results td {
+  @apply py-3 px-4 border border-gray-300;
+}
+
+.results th {
+  @apply bg-gray-200 text-gray-700 font-bold uppercase text-sm;
+}
+
+.results td {
+  @apply text-gray-800;
+}
+
+.download-button {
+  @apply w-full py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg cursor-pointer mt-6;
 }

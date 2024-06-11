@@ -1,0 +1,19 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.landing {
+  @apply flex flex-col justify-center items-center h-screen bg-gray-100;
+}
+
+.title {
+  @apply text-4xl font-bold text-gray-800 mb-10;
+}
+
+.buttons {
+  @apply flex space-x-4;
+}
+
+.button {
+  @apply py-3 px-6 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg cursor-pointer transition duration-300;
+}
