@@ -119,3 +119,10 @@ h1 {
 .download-button-edited {
   @apply w-full py-3 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded-lg cursor-pointer mt-6;
 }
+.navigation-links {
+  @apply flex justify-center mt-6;
+}
+
+.navigation-links a {
+  @apply mx-2 text-blue-500 hover:text-blue-600 font-bold;
+}

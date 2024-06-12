@@ -6,6 +6,8 @@ import './App.css';
 import JSZip from 'jszip';
 import { PDFDocument, rgb } from 'pdf-lib';
 import { saveAs } from 'file-saver';
+import { Link } from 'react-router-dom';
+
 
 // setting the worker source for pdf.js
 GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.js`;
@@ -348,6 +350,14 @@ function MainPage() {
       {results.length > 0 && (
         <div>
           <h2>results</h2>
+          
+
+          <div className="navigation-links">
+            <Link to="/">Home</Link> |{' '}
+            <Link to="/mainPage">Main Page</Link> |{' '}
+            <Link to="/generalOrder">General Order</Link>
+          </div>
+
           <table>
             <thead>
               <tr>
