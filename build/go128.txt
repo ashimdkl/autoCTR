@@ -1,0 +1,135 @@
+Rule 12.1-A: Establishes uniform requirements for underground electrical supply and communication systems in California to ensure safety and service.
+Rule 12: Applies the rules to all underground electrical supply systems and communication systems used in public utility service.
+Rule 12.1: Requirements for systems constructed or reconstructed after the rule's effective date, ensuring compliance with new standards.
+Rule 12.2: Mandates a consistent maintenance program for electric supply systems to ensure safety and functionality.
+Rule 12.3: Specifies that systems constructed before the rule's effective date must comply with existing requirements when reconstructed or replaced.
+Rule 12.4: Allows the commission to order reconstruction or alteration of systems for safety purposes.
+Rule 12.5: Addresses nonconformance by third parties near utility facilities and allows utilities reasonable time to correct conditions.
+Rule 13: Clarifies that the rules are not complete construction specifications but outline key safety requirements.
+Rule 14: Establishes limiting conditions for spacing, clearance, and construction strength, requiring the most stringent conditions to be met.
+Rule 15.1: Permits exemptions or modifications to the rules in specific cases or special types of construction upon application to the Commission.
+Rule 15.2: Allows for experimental installations deviating from the rules to advance the state of the art, with safety precautions.
+Rule 15.3: Ensures the Commission advises interested parties of granted exemptions, modifications, and notifications to keep the rules up to date.
+Rule 16: Grants the Commission the right to provide relief from any rule provisions in specific cases if it serves the public interest.
+Rule 17.1: Requires the design, construction, and maintenance of systems to ensure safe, proper, and adequate service.
+Rule 17.2: Mandates frequent and thorough inspection of systems to ensure good condition and compliance with applicable rules.
+Rule 17.3: Requires the safe location of facilities to protect property, the public, and workers.
+Rule 17.4: Allows joint trenching and installation of facilities, subject to clearance requirements.
+Rule 17.5: Requires the last-constructed facilities to establish required clearances from pre-existing structures.
+Rule 17.6: Prohibits unauthorized access or alteration of underground systems.
+Rule 17.7: Requires operators to provide information on the location of underground facilities to other parties planning construction nearby.
+Rule 17.8: Mandates marking manholes, handholes, and enclosures for ownership identification.
+Rule 17.9: Specifies how to measure clearances, separations, and depths.
+Rule 17.10: Prohibits the use of materials that could damage ducts, cables, or substructures during backfill.
+Rule 18: Requires the establishment of procedures for investigating major accidents and failures to prevent recurrence.
+Rule 20.1: Defines "bond" as an electrical connection for maintaining a common electrical potential.
+Rule 20.2: Defines "cable" and various types, including buried and fiber optic cables.
+Rule 20.3: Defines the "Commission" as the Public Utilities Commission of the State of California.
+Rule 20.4: Defines "communication system" and specifies voltage and power limitations for such systems.
+Rule 20.5: Defines "concurrently installed" as installations occurring by joint planning and agreement.
+Rule 20.6: Defines "conductor" as a material for carrying electric current or transmitting light.
+Rule 20.7: Defines "conduit" as a tube or duct for enclosing conductors or cables.
+Rule 20.8: Defines "conduit system" as conduit and related components for enclosing cables, conductors, and equipment.
+Rule 20.9: Defines "cover" as the distance between the surface of an underground cable or conduit and grade.
+Rule 21.0: Defines "duct" as a fabricated tube for receiving and containing conductors and cables.
+Rule 21.1: Defines "element" as a unit or aggregation of materials, circuits, or apparatus identified functionally.
+Rule 21.2: Defines "enclosed" as being surrounded to protect equipment and minimize accidental contact.
+Rule 21.3: Defines "exposed" as a live part that can be inadvertently touched or approached nearer than a safe distance.
+Rule 21.4: Defines "grade" as the surface at a given point or place.
+Rule 21.5: Defines "grounded" as connected to earth by a conductive path.
+Rule 21.6: Defines "guarded" as protected to minimize accidental contact.
+Rule 21.7: Defines "handhole" as a permanent opening with a removable top, providing access to cable runs.
+Rule 21.8: Defines "independently installed" as installations occurring at significantly different times, not as a mutual endeavor.
+Rule 21.9: Defines "interconnection" as the joining of circuits of different ownership.
+Rule 22.0: Defines "isolated" as not readily accessible to persons unless special means for access are used.
+Rule 22.1: Defines "joint trench operation" as a trench opened and closed as a mutual endeavor for joint occupancy.
+Rule 22.2: Defines "live parts" as parts electrically connected to points of different potential from the earth.
+Rule 22.3: Defines "maintenance" as work done to preserve the efficiency or condition of a facility.
+Rule 22.4: Requires a written maintenance program with key elements such as inspection intervals and corrective actions.
+Rule 22.5: Defines "manhole" as a subsurface enclosure providing access for installation and maintenance of cables or equipment.
+Rule 22.6: Defines "parkway" as an area adjacent to a thoroughfare not used for vehicular travel.
+Rule 22.7: Defines "permanent cable trench" as a trench with removable covering for cable installation.
+Rule 22.8: Defines "practicable" as capable of being accomplished by reasonably available, economic, and workable means.
+Rule 22.9: Defines "protection (mechanical)" as materials placed to limit mechanical stress and prevent damage.
+Rule 22.10: Defines "qualified" as trained and experienced to work on and recognize hazards in lines and equipment.
+Rule 23.0: Defines "random separation" as no deliberate or required clearance between facilities.
+Rule 23.1: Defines "service(s)" as cables, conductors, and equipment connecting a customer to an electrical or communication system.
+Rule 23.2: Defines "shielding (cable)" as a conductive material surrounding a cable.
+Rule 23.3: Defines "sidewalk" as a paved surface intended for pedestrian use.
+Rule 23.4: Defines "subsurface equipment enclosure" as a chamber in a supply system containing access to transformers or cables.
+Rule 23.5: Defines "supply system" as an underground electrical system for transmitting and distributing electrical energy.
+Rule 23.6: Defines "thoroughfare" as any place generally used for vehicular travel.
+Rule 23.7: Defines "vault" as an isolated fire-resistant enclosure containing working space for equipment.
+Rule 23.8: Defines "voltage (or volts)" as the highest effective electrical potential between two conductors.
+Rule 24.0: Defines "wire gage" as a standard for measuring wire sizes.
+Rule 24.1: Defines "working space" as the space available for safe working around underground facilities.
+Rule 30: Covers construction requirements for supply systems, including cables, conductors, and associated equipment.
+Rule 31.1: Defines "duct system" as per Rule 21.0.
+Rule 31.2: Mandates maintenance and inspection of duct systems as per Rules 12.2 and 17.2.
+Rule 31.3: Requires construction of duct systems to ensure safety and property preservation.
+Rule 31.4: Specifies clearance and depth requirements for supply system ducts from other structures.
+Rule 31.5: Provides requirements for risers and above-ground terminations of supply ducts.
+Rule 31.6: Mandates sealing of service laterals to prevent water ingress into buildings.
+Rule 32.1: Defines "manholes, handholes, and subsurface equipment enclosures" as per Rules 21.7, 22.5, 23.4, and 23.7.
+Rule 32.2: Mandates maintenance and inspection of manholes and handholes as per Rules 12.2 and 17.2.
+Rule 32.3: Specifies material and strength requirements for manholes, handholes, and underground boxes.
+Rule 32.4: Requires manholes to provide sufficient working space for safe installation and maintenance.
+Rule 32.5: Specifies minimum dimensions for manhole access openings.
+Rule 32.6: Requires drainage of manholes to prevent sewer gas entry.
+Rule 32.7: Mandates secure closure of manholes and handholes with strong covers.
+Rule 32.8: Specifies location requirements for manholes to ensure safe access and minimize traffic interference.
+Rule 32.9: Removed (previously specified requirements for foreign pipes).
+Rule 32.10: Requires exclusion or guarding of foreign pipes creating unusual hazards in manholes.
+Rule 32.11: Mandates suitability of incidental wiring and auxiliary facilities in manholes and vaults.
+Rule 32.12: Requires dispersion of explosive and noxious gases before entry into manholes.
+Rule 33.1: Defines "cables" as per Rules 20.2 and 20.6.
+Rule 33.2: Mandates maintenance and inspection of cables as per Rules 12.2 and 17.2.
+Rule 33.3: Specifies material requirements for conductors, insulation, and shielding of cables.
+Rule 33.4: Specifies clearance and depth requirements for supply cables.
+Rule 33.5: Provides requirements for above-ground installations of supply cables.
+Rule 33.6: Mandates accessibility of cables and conductors in manholes and enclosures.
+Rule 33.7: Requires grounding and bonding of cable sheaths and shields.
+Rule 34.1: Mandates maintenance and inspection of equipment as per Rules 12.2 and 17.2.
+Rule 34.2: Specifies requirements for equipment arrangement in manholes, vaults, and enclosures.
+Rule 34.3: Provides requirements for self-contained surface-mounted equipment.
+Rule 34.4: Mandates grounding and bonding of equipment as per Rule 36.5.
+Rule 34.5: Requires guarding of live parts as per Rule 35.2.
+Rule 35.1: Mandates identification of cables operating above 750 volts.
+Rule 35.2: Requires guarding of live parts to prevent accidental contact.
+Rule 35.3: Mandates warning signs for high voltage in specific enclosures.
+Rule 35.4: Refers to requirements for manhole covers.
+Rule 36.1: Defines "grounds and neutrals" as per Rule 21.5.
+Rule 36.2: Mandates maintenance and inspection of grounds and neutrals as per Rules 12.2 and 17.2.
+Rule 36.3: Specifies material and size requirements for neutral conductors.
+Rule 36.4: Prohibits the use of ground or earth as a normal return conductor.
+Rule 36.5: Provides grounding and bonding requirements for supply conductors and equipment.
+Rule 40.1: Specifies construction methods for communication systems.
+Rule 41.1: Defines "duct systems" as per Rule 21.0.
+Rule 41.2: Mandates maintenance and inspection of duct systems as per Rules 12.2 and 17.2.
+Rule 41.3: Requires construction of duct systems to ensure safety and property preservation.
+Rule 41.4: Specifies clearance and depth requirements for communication duct systems.
+Rule 41.5: Provides requirements for risers and above-grade terminations of communication ducts.
+Rule 41.6: Mandates sealing of service laterals to prevent water ingress into buildings.
+Rule 42.1: Defines "manholes and handholes" as per Rules 21.7, 22.5, 23.4, and 23.7.
+Rule 42.2: Mandates maintenance and inspection of manholes and handholes as per Rules 12.2 and 17.2.
+Rule 42.3: Specifies material and strength requirements for manholes, handholes, and underground boxes.
+Rule 42.4: Requires manholes to provide sufficient working space for safe installation and maintenance.
+Rule 42.5: Specifies minimum dimensions for manhole access openings.
+Rule 42.6: Requires drainage of manholes to prevent sewer gas entry.
+Rule 42.7: Mandates secure closure of manholes and handholes with strong covers.
+Rule 42.8: Specifies location requirements for manholes to ensure safe access and minimize traffic interference.
+Rule 42.9: Requires exclusion or guarding of foreign pipes creating unusual hazards in manholes.
+Rule 42.10: Requires dispersion of explosive and noxious gases before entry into manholes.
+Rule 43.1: Defines "buried cables and conductors" as per Rules 20.2-A and 20.6.
+Rule 43.2: Mandates maintenance and inspection of buried cables and conductors as per Rules 12.2 and 17.2.
+Rule 43.3: Specifies clearance and depth requirements for buried communication cables and conductors.
+Rule 43.4: Provides requirements for risers and above-grade terminations of buried communication lines.
+Rule 44.1: Specifies separation requirements for supply and communication systems.
+Rule 44.2: Addresses special cases where communication and supply systems interconnect.
+Rule 45.1: Defines "private communication circuits" as per Rule 20.4-B.
+Rule 45.2: Mandates maintenance and inspection of private communication circuits as per Rules 12.2 and 17.2.
+Rule 45.3: Specifies requirements for private communication cables and conductors of supply systems.
+Rule 45.4: Allows other private communication cables and conductors to occupy public communication system ducts with permission.
+Rule 46.1: Mandates maintenance and inspection of police, fire alarm, and traffic control circuits as per Rules 12.2 and 17.2.
+Rule 46.2: Allows police, fire alarm, and traffic control circuits to occupy public communication system ducts with permission.
+Rule 46.3: Allows police, fire alarm, and traffic control circuits to occupy supply system underground structures with permission.

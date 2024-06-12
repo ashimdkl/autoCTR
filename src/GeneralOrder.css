@@ -1,41 +1,75 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+/* GeneralOrder.css */
 
 .data-page {
-  @apply max-w-4xl mx-auto py-10 px-5;
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+h1 {
+  font-size: 2.5em;
+  color: #343a40;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .dropzone {
-  @apply flex items-center justify-center border-4 border-dashed border-gray-300 rounded-lg p-6 mb-6 bg-white;
+  border: 2px dashed #007bff;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+  background-color: #e9ecef;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background-color 0.3s;
 }
 
 .dropzone:hover {
-  @apply bg-gray-200 cursor-pointer;
+  background-color: #dee2e6;
 }
 
 .dropzone p {
-  @apply text-gray-500 text-lg;
+  font-size: 1.2em;
+  color: #007bff;
 }
 
-.loading,
-.success-message {
-  @apply text-center text-xl text-gray-700 mt-6;
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  margin-right: 10px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+h2 {
+  font-size: 1.5em;
+  color: #343a40;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 .loading {
-  @apply animate-pulse;
-}
-
-.success-message {
-  @apply text-green-500;
-}
-
-/* Button Styles */
-button {
-  @apply py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg cursor-pointer mt-4;
-}
-
-button + button {
-  @apply ml-4;
+  text-align: center;
+  font-size: 1.5em;
+  color: #007bff;
+  margin-top: 20px;
 }

@@ -20,24 +20,19 @@ function MainPage() {
   const [facilityDialogVisible, setFacilityDialogVisible] = useState(false);
   const [workOrderDialogVisible, setWorkOrderDialogVisible] = useState(false);
   const [workOrder, setWorkOrder] = useState("");
+  const [popupVisible, setPopupVisible] = useState(false); // New state for popup visibility
 
   // function to handle changes in the facility data input
-  // inputs: event (change event)
-  // outputs: updates facilityData state
   const handleFacilityDataChange = (event) => {
     setFacilityData(event.target.value);
   };
 
   // function to handle changes in the work order input
-  // inputs: event (change event)
-  // outputs: updates workOrder state
   const handleWorkOrderChange = (event) => {
     setWorkOrder(event.target.value);
   };
 
   // function to parse facility data
-  // inputs: data (string of facility data)
-  // outputs: array of objects with sequence and facilityId
   const parseFacilityData = (data) => {
     return data.split('\n').map(line => {
       const [sequence, facilityId] = line.split('\t');
@@ -46,18 +41,13 @@ function MainPage() {
   };
 
   // function to handle dropping PDF files for splitting
-  // inputs: acceptedFiles (array of PDF files)
-  // outputs: sets loading state, processes each PDF file, creates a zip of split pages
   const handleSplitDrop = (acceptedFiles) => {
     setSplitFiles(acceptedFiles);
     setLoading(true);
 
-    // process each PDF file
     const splitPromises = acceptedFiles.map((file) => {
-      // return a promise for each file
       return new Promise((resolve) => {
         const reader = new FileReader();
-        // read the file as an array buffer
         reader.onload = async () => {
           const typedArray = new Uint8Array(reader.result);
           const loadingTask = getDocument(typedArray);
@@ -66,7 +56,6 @@ function MainPage() {
           const zip = new JSZip();
           const pagePromises = [];
 
-          // process each page of the PDF file
           for (let i = 1; i <= pdf.numPages; i++) {
             pagePromises.push(pdf.getPage(i).then(async (page) => {
               const scale = 2;
@@ -100,7 +89,6 @@ function MainPage() {
             }));
           }
 
-          // generate the zip file with all pages
           Promise.all(pagePromises).then(() => {
             zip.generateAsync({ type: 'blob' }).then((content) => {
               saveAs(content, `${file.name.split('.pdf')[0]}_pages.zip`);
@@ -117,8 +105,6 @@ function MainPage() {
   };
 
   // function to handle dropping PDF files for renaming
-  // inputs: acceptedFiles (array of PDF files)
-  // outputs: sets loading state, shows facility dialog
   const handleRenameDrop = (acceptedFiles) => {
     setRenameFiles(acceptedFiles);
     setLoading(true);
@@ -126,8 +112,6 @@ function MainPage() {
   };
 
   // function to process facility data
-  // inputs: none
-  // outputs: processes facility data, sets results state
   const processFacilityData = () => {
     const facilityDataArray = parseFacilityData(facilityData);
     const facilityIds = facilityDataArray.map(item => item.facilityId);
@@ -142,14 +126,12 @@ function MainPage() {
 
           const pagePromises = [];
 
-          // process each page of the PDF file
           for (let i = 1; i <= pdf.numPages; i++) {
             pagePromises.push(pdf.getPage(i).then(async (page) => {
               const textContent = await page.getTextContent();
               const lines = textContent.items.map(item => item.str.replace(/\s+/g, ''));
               const text = lines.join(' ');
 
-              // match the facility id using regex
               const regex = /(\d{8}\.\d+)\s+(\d+)/;
               const matches = text.match(regex);
               let facilityId = null;
@@ -188,13 +170,10 @@ function MainPage() {
   };
 
   // function to rename and zip files
-  // inputs: none
-  // outputs: renames PDF files and creates a zip file
   const renameAndZipFiles = () => {
     setLoading(true);
     const zip = new JSZip();
 
-    // group results by sequence number
     const sequenceGroups = results.reduce((groups, result) => {
       if (result.sequence !== 'not found') {
         if (!groups[result.sequence]) {
@@ -205,31 +184,26 @@ function MainPage() {
       return groups;
     }, {});
 
-    // create a promise for each sequence group
     const renamePromises = Object.keys(sequenceGroups).map(async (sequence) => {
       const pdfDoc = await PDFDocument.create();
       const sequenceResults = sequenceGroups[sequence];
 
-      // add pages to the new PDF document
       for (const result of sequenceResults) {
         const response = await fetch(result.fileName);
         const arrayBuffer = await response.arrayBuffer();
         const originalPdf = await PDFDocument.load(arrayBuffer);
 
-        // get the page index from the result
         const pageIndex = parseInt(result.page.split(' ')[1], 10) - 1;
         const [page] = await pdfDoc.copyPages(originalPdf, [pageIndex]);
         pdfDoc.addPage(page);
       }
 
-      // save the PDF document and add it to the zip file
       const pdfBytes = await pdfDoc.save();
       const blob = new Blob([pdfBytes], { type: 'application/pdf' });
       const pageRange = sequenceResults.map(res => res.page.split(' ')[1]).join('_');
       zip.file(`${sequence}sequenceMERGpage${pageRange}.pdf`, blob);
     });
 
-    // wait for all promises to resolve
     Promise.all(renamePromises).then(() => {
       zip.generateAsync({ type: 'blob' }).then((content) => {
         saveAs(content, 'output.zip');
@@ -242,12 +216,9 @@ function MainPage() {
   };
 
   // function to add box with work order and sequence number to each page
-  // inputs: none
-  // outputs: processes PDF files, adds box to each page, creates a zip of edited files
   const addBoxToPages = async () => {
     setLoading(true);
 
-    // group results by sequence number
     const sequenceGroups = results.reduce((groups, result) => {
       if (result.sequence !== 'not found') {
         if (!groups[result.sequence]) {
@@ -258,18 +229,15 @@ function MainPage() {
       return groups;
     }, {});
 
-    // create a promise for each sequence group
     const editPromises = Object.keys(sequenceGroups).map(async (sequence) => {
       const pdfDoc = await PDFDocument.create();
       const sequenceResults = sequenceGroups[sequence];
 
-      // add pages to the new PDF document
       for (const result of sequenceResults) {
         const response = await fetch(result.fileName);
         const arrayBuffer = await response.arrayBuffer();
         const originalPdf = await PDFDocument.load(arrayBuffer);
 
-        // get the page index from the result
         const pageIndex = parseInt(result.page.split(' ')[1], 10) - 1;
         const [page] = await pdfDoc.copyPages(originalPdf, [pageIndex]);
         const newPage = pdfDoc.addPage(page);
@@ -279,7 +247,6 @@ function MainPage() {
         const rectX = newPage.getWidth() - rectWidth - 10;
         const rectY = newPage.getHeight() - rectHeight - 10;
 
-        // draw rectangle on each page
         newPage.drawRectangle({
           x: rectX,
           y: rectY,
@@ -289,31 +256,27 @@ function MainPage() {
           borderWidth: 1,
         });
 
-        // add work order text
         newPage.drawText(`WO: ${workOrder}`, {
+          x: rectX + 5,
+          y: rectY + 20,
+          size: 10,
+          color: rgb(1, 0, 0),
+        });
+
+        newPage.drawText(`Sequence #: ${result.sequence}`, {
           x: rectX + 5,
           y: rectY + 5,
           size: 10,
-          color: rgb(1, 0, 0), // change text color to red
-        });
-
-        // add sequence number text
-        newPage.drawText(`Sequence #: ${result.sequence}`, {
-          x: rectX + 5,
-          y: rectY + 20, // add a space of 15 units between the two texts
-          size: 10,
-          color: rgb(1, 0, 0), // change text color to red
+          color: rgb(1, 0, 0),
         });
       }
 
-      // save the PDF document and return the blob and file name
       const pdfBytes = await pdfDoc.save();
       const blob = new Blob([pdfBytes], { type: 'application/pdf' });
       const pageRange = sequenceResults.map(res => res.page.split(' ')[1]).join('_');
       return { blob, fileName: `${sequence}sequenceMERGpage${pageRange}.pdf` };
     });
 
-    // wait for all promises to resolve
     const editedFiles = await Promise.all(editPromises);
     const zip = new JSZip();
 
@@ -380,47 +343,100 @@ function MainPage() {
         </div>
       )}
 
-{results.length > 0 && (
-  <div>
-    <h2>results</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>file name</th>
-          <th>page</th>
-          <th>sequence #</th>
-          <th>facility id</th>
-        </tr>
-      </thead>
-      <tbody>
-        {results.map((result, index) => (
-          <tr key={index}>
-            <td>{result.fileName}</td>
-            <td>{result.page}</td>
-            <td>{result.sequence}</td>
-            <td>{result.facilityId}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-    <button className="download-button" onClick={renameAndZipFiles}>Download Renamed Files</button>
-    <button className="download-button-edited" onClick={() => setWorkOrderDialogVisible(true)}>Download Edited PDFs</button>
-    {workOrderDialogVisible && (
-      <div className="work-order-dialog">
-        <h2>enter work order #</h2>
-        <input
-          className = "work-order-input"
-          type="text"
-          value={workOrder}
-          onChange={handleWorkOrderChange}
-          placeholder="enter work order #"
+      {results.length > 0 && (
+        <div>
+          <h2>results</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>file name</th>
+                <th>page</th>
+                <th>sequence #</th>
+                <th>facility id</th>
+              </tr>
+            </thead>
+            <tbody>
+              {results.map((result, index) => (
+                <tr key={index}>
+                  <td>{result.fileName}</td>
+                  <td>{result.page}</td>
+                  <td>{result.sequence}</td>
+                  <td>{result.facilityId}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <button className="download-button" onClick={renameAndZipFiles}>Download Renamed Files</button>
+          <button className="download-button-edited" onClick={() => setWorkOrderDialogVisible(true)}>Download Edited PDFs</button>
+          {workOrderDialogVisible && (
+            <div className="work-order-dialog">
+              <h2>enter work order #</h2>
+              <input
+                className="work-order-input"
+                type="text"
+                value={workOrder}
+                onChange={handleWorkOrderChange}
+                placeholder="enter work order #"
+              />
+              <button className="edited-button" onClick={addBoxToPages}>add box and download edited pdfs</button>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Icon and Popup */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '10px',
+          left: '10px',
+          cursor: 'pointer',
+          zIndex: 1000,
+        }}
+        onClick={() => setPopupVisible(true)}
+      >
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/8/84/Question_Mark_Icon.png"
+          alt="Help"
+          style={{ width: '60px', height: '60px', opacity: 0.5 }}
         />
-        <button className = "edited-button" onClick={addBoxToPages}>add box and download edited pdfs</button>
       </div>
-    )}
-  </div>
-)}
-  </div>
+
+      {popupVisible && (
+        <div
+          style={{
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            backgroundColor: 'white',
+            padding: '20px',
+            boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+            zIndex: 1001,
+          }}
+        >
+          <video width="320" height="240" controls>
+            <source src="/ctrAuto.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <button
+            onClick={() => setPopupVisible(false)}
+            style={{
+              display: 'block',
+              margin: '10px auto',
+              padding: '5px 10px',
+              backgroundColor: '#f44336',
+              color: 'white',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer',
+            }}
+          >
+            Close
+          </button>
+        </div>
+      )}
+    </div>
   );
 }
 

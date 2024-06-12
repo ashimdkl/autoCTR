@@ -1,0 +1,53 @@
+20.6: Defines various classes of circuits that are referred to in GO95. This includes communication, railway, supply, and trolley circuits.
+20.9: Defines various conductors that are referred to in GO95.
+21.0: Defines various crossarms and structures on poles. This includes combination, buck, clearance, and guard arms.
+21.4: Defines effective grounding and types of grounding as referred to in GO95.
+21.5: Defines various types of guys as referred to in GO95.
+22.1: Defines various types of lines as referred to in GO95. This includes conflicting, collinear, tower, and overhead lines.
+22.6: Defines various aspects relating to poles that are referred to in GO95. This includes splicing, reinforcement, service meters, and clearances.
+22.8: Defines protective coverings for various conductors and components. This includes ground, supply, and conduit wires as well as hardwood mouldings and bolts.
+31: Defines requirements for design, construction, and maintenance, and inspection of lines. Defines guidelines for avoidance of conflicts during construction/reconstruction and at line crossings. Defines guidelines for cooperation and joint use of poles for various lines.
+32.2: Defines the general rules for line arrangement on poles. Defines which classes of lines should be placed above others.
+32.3: Defines the clearances between poles and conductors in colinear and crossing lines.
+32.4: Defines the requirements for different classes of supply and communication lines that lie on the same crossarms. Defines the requirements with same and different ownership.
+33: Defines guidelines for neutral lines, ground conductors, ground connections, and effective grounding.
+34: Defines requirements for supporting structures such as messengers, span wires, rope, and bracket supported attachments. Defines clearances for messengers, span wires, energized and non-energized apparatuses, and miscellaneous equipment.
+37: Defines the clearances and tolerances to clearances for wires in various cases. Refer to Table 1 for a comprehensive list of clearances.
+38: Defines vertical, horizontal, and radial clearances and tolerances for wire-wire construction. Refer to Table 2 for a comprehensive list of clearances.
+39: Defines clearances and tolerances for conductors and signs. Refer to Table 2-A for a comprehensive list of clearances.
+42: Defines grades of construction for various supply and communication lines and combinations of lines. Refer to Table 3 for a comprehensive list of construction grades.
+43: Defines loading classifications and minimum assumptions to make in each case. Defines factors such as wind, ice, and temperature for loading.
+44: Defines the minimum allowable safety factors for installation, reconstruction, and replacements. Refer to Table 4 for a comprehensive list of safety factors. Defines guidelines for cooperation for joint pole use and loading.
+45: Defines method for calculating transverse shear stress and special provisions when making calculations.
+46: Defines method for calculating vertical loads.
+47: Defines rules and guidelines for the use of guys and braces to fulfill longitudinal strength requirements. Defines different requirements with changing construction grades.
+48: Defines rules for deriving the required strength of materials from various materials. This includes wood, steel, concrete, fiber reinforced polymer, and other engineered materials. Reference Rule 44 for safety factor guidelines and Table 5 for a comprehensive list of fiber strengths. Includes equations for calculating various stresses. Defines values to be used for ultimate strength of wires and cables in conductors, span wires, guys and messengers. Refer to Appendix B for a comprehensive list of ultimate strengths. Defines rules for tower and pole foundations.
+49.1: Defines additional strength requirements for poles, towers, and other structures. Defines minimum top circumferences of wood poles under various conditions. Defines minimum pole setting depths and tolerances for pole depths. Refer to Table 6 for a comprehensive list of pole setting depths. Defines rules for gains with respect to structures.
+49.2: Defines requirements for material, minimum size, and strength for crossarms and guard arms.
+49.3: Defines material, size, and strength requirements for pins. Refer to Table 7 for a comprehensive list of pin size and material requirements.
+49.4: Defines material, size, and strength requirements for conductors. Refer to Table 8 for a comprehensive list of minimum conductor size requirements. Defines rules for sags, tensions, splices, service drops, and connections.
+49.5: Defines strength requirements for insulators on lines, guys, and posts.
+49.6: Defines material, size, and strength requirements for guys and anchors. Refer to Table 9 for a comprehensive list of minimum size and strength for guys.
+49.7: Defines material and strength requirements for messengers and span wires. Defines requirements for messengers supporting cables.
+49.8: All pole hardware must be corrosion resistant or treated to be corrosion resistant.
+52.5: Additional rules for running different class conductors on the same crossarm.
+53: Defines construction requirements for pins, deadends, conductor suspension and fastenings, and bonding.
+54.4: Defines clearances for conductors in various situations with structures and other conductors. Reference Table 1.
+54.5: Defines minimum conductor sags. Refer to Appendix C for suggested sags.
+54.6: Rules and clearances for: Unprotected wires, Ground wires, Horizontal and vertical conductors, Risers, Termination of risers and runs encased in metal conduit, Termination of risers and runs covered with suitable protective covering, Hardware on wood poles or wood structures, Attachment of protective covering.
+54.7: Defines rules for climbing and working space on climbable poles.
+54.8: Defines material, size, and clearances for service drops. Refer to Table 10 and 11 for a comprehensive list of service drop clearances.
+54.9: Defines rules for pole arrangement and clearance for low voltage racks. Defines acceptable conductor material, spacing, vertical clearance, and span length.
+54.10: Defines rules for conductor arrangements, clearances, materials, and strengths for conductors. Defines rules for sags and fastenings with conductors.
+54.11: Defines rules for conductors supporting insulators of more than 750 volts. Defines rules for pole arrangements, clearances, spacing, and materials.
+54.12: Defines rules for conductor arrangements, clearances, materials, and strengths for conductors. Defines rules for sags and fastenings with conductors.
+55: Defines materials, strength, and voltage requirements for conductor insulators. Refer to Table 12 for a comprehensive list of insulator flashover voltages.
+56: Defines uses for overhead guys, anchor guys, and span wires. Defines rules for clearances, fastenings, sectionalizing with insulators, guy insulators, and guy markers.
+57: Defines clearances for messengers and insulated cables. Refer to Tables 1 and 2. Defines strength requirements for fastenings used with messengers. Defines rules for sectionalization of messengers with insulators. Defines use of guard arms, coverings, bonding, grounding, and sags with respect to messengers.
+58: Defines rules for clearances, arrangements, and strength requirements for various cases with miscellaneous equipment. This includes enclosed equipment, transformers, line switches and disconnects, traffic signals, street lighting equipment, and other apparatus. Refer to Table 58–1, 58–2.
+59: Defines special details for common neutral systems where the neutral conductor is common to primary circuits and secondary circuits.
+91: Defines joint use rules for determining required strength, stepping, hardware, marking, and fall protection equipment.
+92: Defines how vertical clearances for conductors, cables, and messengers are modified on jointly used poles. Defines how clearances are modified between conductors, cables, messengers, and miscellaneous equipment. Defines clearances for vertical runs, risers, ground wires, and hardware with joint use. Defines rules for grounding with joint use.
+101: Defines vertical differences required between crossing and adjacent structures.
+103: Defines rules to prevent conductor breakage and burning supports. Refers to splices, taps, and supply conductor supports. Defines limitations of span lengths at crossings. Defines rules clearances for crossing or colinear lines.
+104: Defines additional rules for insulators at crossings.

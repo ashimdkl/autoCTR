@@ -3,7 +3,6 @@ import { useDropzone } from 'react-dropzone';
 import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
 import * as pdfjsLib from 'pdfjs-dist/webpack';
 import * as XLSX from 'xlsx';
-import { Link } from 'react-router-dom';
 import './GeneralOrder.css';
 
 GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.js`;
@@ -15,6 +14,7 @@ function GeneralOrder() {
   const [loading, setLoading] = useState(false);
   const [go95Definitions, setGO95Definitions] = useState({});
   const [go128Definitions, setGO128Definitions] = useState({});
+  const [popupVisible, setPopupVisible] = useState(false); // New state for popup visibility
 
   useEffect(() => {
     fetch('/go95.txt')
@@ -211,9 +211,62 @@ function GeneralOrder() {
           <h2>Enter keywords to search (comma separated):</h2>
           <input type="text" value={keywords} onChange={e => setKeywords(e.target.value)} />
           <div>
-            <button onClick={handleSearch}>Normal Analysis</button>
-            <button onClick={handleGeneralOrderAnalysis}>General Order Analysis</button>
+            <button className = "download-button" onClick={handleSearch}>Normal Analysis</button>
+            <button className = "download-button" onClick={handleGeneralOrderAnalysis}>General Order Analysis</button>
           </div>
+        </div>
+      )}
+
+      {/* Icon and Popup */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '10px',
+          left: '10px',
+          cursor: 'pointer',
+          zIndex: 1000,
+        }}
+        onClick={() => setPopupVisible(true)}
+      >
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/8/84/Question_Mark_Icon.png"
+          alt="Help"
+          style={{ width: '60px', height: '60px', opacity: 0.5 }}
+        />
+      </div>
+
+      {popupVisible && (
+        <div
+          style={{
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            backgroundColor: 'white',
+            padding: '20px',
+            boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+            zIndex: 1001,
+          }}
+        >
+          <video width="320" height="240" controls>
+            <source src="/GOanalysis.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <button
+            onClick={() => setPopupVisible(false)}
+            style={{
+              display: 'block',
+              margin: '10px auto',
+              padding: '5px 10px',
+              backgroundColor: '#f44336',
+              color: 'white',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer',
+            }}
+          >
+            Close
+          </button>
         </div>
       )}
     </div>
