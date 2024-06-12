@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+PDF Processing Application
+Description
+This application is designed to handle various PDF file operations such as splitting, renaming, and editing based on facility and sequence data. The application is built using React and leverages libraries like pdf-lib and pdfjs-dist for PDF manipulation, and JSZip for creating ZIP archives of the processed files.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Features
+Split PDF Files:
 
-## Available Scripts
+Users can upload PDF files, and the application will split them into individual pages. Each page is saved as a separate PDF and zipped into a single file for download.
+Rename and Zip PDF Files:
 
-In the project directory, you can run:
+Users can upload PDF files along with facility and sequence data. The application processes the files, matches the sequence numbers and facility IDs, and renames the PDF pages accordingly. Files with the same sequence number are merged and saved as SEQxxxx.pdf.
+Add Annotations to PDF Pages:
 
-### `npm start`
+Users can add a work order and sequence number annotations to each page of the PDF files. The annotated PDFs are zipped and available for download.
+How It Works
+Upload PDF Files:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Use the drag-and-drop interface to upload PDF files for splitting or renaming.
+Process Facility Data:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Enter the sequence numbers and facility IDs in the specified format. The application parses this data and uses it to rename and annotate the PDF pages.
+Download Processed Files:
 
-### `npm test`
+After processing, the application provides options to download the split, renamed, or annotated PDF files as a ZIP archive.
+Installation
+Clone the repository:
+sh
+Copy code
+git clone https://github.com/your-username/pdf-processing-app.git
+Navigate to the project directory:
+sh
+Copy code
+cd pdf-processing-app
+Install dependencies:
+sh
+Copy code
+npm install
+Start the application:
+sh
+Copy code
+npm start
+Usage
+Splitting PDFs:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Drag and drop the PDF files into the splitter section and wait for the files to be processed. Download the zipped file containing individual PDF pages.
+Renaming and Zipping PDFs:
 
-### `npm run build`
+Drag and drop the PDF files into the renaming section. Enter the sequence and facility data, and process the files. Download the zipped file containing the renamed and merged PDFs.
+Annotating PDFs:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+After processing the files, enter the work order number and add annotations to the pages. Download the zipped file containing the annotated PDFs.
+Issues and Solutions
+Handling Missing Sequence Numbers:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Pages with missing sequence numbers ("not found") are now skipped during processing to avoid errors.
+File Parsing and Fetching:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The application includes checks to ensure files exist before processing, preventing parsing errors such as "No PDF header found."
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
