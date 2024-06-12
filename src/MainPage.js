@@ -189,19 +189,20 @@ function MainPage() {
       const sequenceResults = sequenceGroups[sequence];
 
       for (const result of sequenceResults) {
-        const response = await fetch(result.fileName);
-        const arrayBuffer = await response.arrayBuffer();
-        const originalPdf = await PDFDocument.load(arrayBuffer);
+        const file = renameFiles.find(f => f.name === result.fileName);
+        if (file) {
+          const arrayBuffer = await file.arrayBuffer();
+          const originalPdf = await PDFDocument.load(arrayBuffer);
 
-        const pageIndex = parseInt(result.page.split(' ')[1], 10) - 1;
-        const [page] = await pdfDoc.copyPages(originalPdf, [pageIndex]);
-        pdfDoc.addPage(page);
+          const pageIndex = parseInt(result.page.split(' ')[1], 10) - 1;
+          const [page] = await pdfDoc.copyPages(originalPdf, [pageIndex]);
+          pdfDoc.addPage(page);
+        }
       }
 
       const pdfBytes = await pdfDoc.save();
       const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-      const pageRange = sequenceResults.map(res => res.page.split(' ')[1]).join('_');
-      zip.file(`${sequence}sequenceMERGpage${pageRange}.pdf`, blob);
+      zip.file(`SEQ${sequence}.pdf`, blob);
     });
 
     Promise.all(renamePromises).then(() => {
@@ -234,47 +235,48 @@ function MainPage() {
       const sequenceResults = sequenceGroups[sequence];
 
       for (const result of sequenceResults) {
-        const response = await fetch(result.fileName);
-        const arrayBuffer = await response.arrayBuffer();
-        const originalPdf = await PDFDocument.load(arrayBuffer);
+        const file = renameFiles.find(f => f.name === result.fileName);
+        if (file) {
+          const arrayBuffer = await file.arrayBuffer();
+          const originalPdf = await PDFDocument.load(arrayBuffer);
 
-        const pageIndex = parseInt(result.page.split(' ')[1], 10) - 1;
-        const [page] = await pdfDoc.copyPages(originalPdf, [pageIndex]);
-        const newPage = pdfDoc.addPage(page);
+          const pageIndex = parseInt(result.page.split(' ')[1], 10) - 1;
+          const [page] = await pdfDoc.copyPages(originalPdf, [pageIndex]);
+          const newPage = pdfDoc.addPage(page);
 
-        const rectWidth = 120;
-        const rectHeight = 40;
-        const rectX = newPage.getWidth() - rectWidth - 10;
-        const rectY = newPage.getHeight() - rectHeight - 10;
+          const rectWidth = 120;
+          const rectHeight = 40;
+          const rectX = newPage.getWidth() - rectWidth - 10;
+          const rectY = newPage.getHeight() - rectHeight - 10;
 
-        newPage.drawRectangle({
-          x: rectX,
-          y: rectY,
-          width: rectWidth,
-          height: rectHeight,
-          borderColor: rgb(1, 0, 0),
-          borderWidth: 1,
-        });
+          newPage.drawRectangle({
+            x: rectX,
+            y: rectY,
+            width: rectWidth,
+            height: rectHeight,
+            borderColor: rgb(1, 0, 0),
+            borderWidth: 1,
+          });
 
-        newPage.drawText(`WO: ${workOrder}`, {
-          x: rectX + 5,
-          y: rectY + 20,
-          size: 10,
-          color: rgb(1, 0, 0),
-        });
+          newPage.drawText(`WO: ${workOrder}`, {
+            x: rectX + 5,
+            y: rectY + 20,
+            size: 10,
+            color: rgb(1, 0, 0),
+          });
 
-        newPage.drawText(`Sequence #: ${result.sequence}`, {
-          x: rectX + 5,
-          y: rectY + 5,
-          size: 10,
-          color: rgb(1, 0, 0),
-        });
+          newPage.drawText(`Sequence #: ${result.sequence}`, {
+            x: rectX + 5,
+            y: rectY + 5,
+            size: 10,
+            color: rgb(1, 0, 0),
+          });
+        }
       }
 
       const pdfBytes = await pdfDoc.save();
       const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-      const pageRange = sequenceResults.map(res => res.page.split(' ')[1]).join('_');
-      return { blob, fileName: `${sequence}sequenceMERGpage${pageRange}.pdf` };
+      return { blob, fileName: `SEQ${sequence}.pdf` };
     });
 
     const editedFiles = await Promise.all(editPromises);
