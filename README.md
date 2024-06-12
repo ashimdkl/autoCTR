@@ -64,7 +64,7 @@ This application is designed to handle various PDF file operations such as split
 ### Installation
 
 1. Clone the repository:
-   git clone https://github.com/your-username/pdf-processing-app.git
+   git clone https://github.com/your-username/autoCTR.git
 2) Navigate to the project directory:
   cd pdf-processing-app
 3) Install dependencies:
