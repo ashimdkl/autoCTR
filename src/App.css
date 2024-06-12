@@ -107,3 +107,15 @@ h1 {
 .download-button {
   @apply w-full py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg cursor-pointer mt-6;
 }
+
+.edited-button {
+  @apply w-full py-3 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded-lg cursor-pointer mt-6;
+}
+
+.work-order-input {
+  @apply w-full p-3 mb-4 border border-gray-300 rounded-lg;
+}
+
+.download-button-edited {
+  @apply w-full py-3 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded-lg cursor-pointer mt-6;
+}
