@@ -150,8 +150,6 @@ function MainPage() {
   */
   const processFacilityData = () => {
     const facilityDataArray = parseFacilityData(facilityData);
-    const facilityIds = facilityDataArray.map(item => item.facilityId);
-
     // process the facility data
     const renamePromises = renameFiles.map((file) => {
       // return a promise for each file

@@ -9,7 +9,7 @@ import './App.css';
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
-  const correctPassword = 'poweng';
+  const correctPassword = 'none';
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
