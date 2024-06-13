@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+## power dist tools.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Description
 
-## Available Scripts
+This application is designed to handle various PDF file operations such as splitting, renaming, and editing based on facility and sequence data. The application is built using React and leverages libraries like `pdf-lib` and `pdfjs-dist` for PDF manipulation, and `JSZip` for creating ZIP archives of the processed files. The second part is the General Order Analyzer and that is responsbile for parsing pdf's and finding the user keyword and extracting data into the excel sheets properly.
 
-In the project directory, you can run:
+### Features
 
-### `npm start`
+1. **Split PDF Files:**
+   - Users can upload PDF files, and the application will split them into individual pages. Each page is saved as a separate PDF and zipped into a single file for download.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. **Rename and Zip PDF Files:**
+   - Users can upload PDF files along with facility and sequence data. The application processes the files, matches the sequence numbers and facility IDs, and renames the PDF pages accordingly. Files with the same sequence number are merged and saved as `SEQxxxx.pdf`.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. **Add Annotations to PDF Pages:**
+   - Users can add a work order and sequence number annotations to each page of the PDF files. The annotated PDFs are zipped and available for download.
 
-### `npm test`
+### How It Works
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Upload PDF Files:**
+   - Use the drag-and-drop interface to upload PDF files for splitting or renaming.
 
-### `npm run build`
+2. **Process Facility Data:**
+   - Enter the sequence numbers and facility IDs in the specified format. The application parses this data and uses it to rename and annotate the PDF pages.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. **Download Processed Files:**
+   - After processing, the application provides options to download the split, renamed, or annotated PDF files as a ZIP archive.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Features For General Ordering App.
 
-### `npm run eject`
+### Features
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. **PDF File Upload:**
+   - Users can upload multiple PDF files using a drag-and-drop interface for processing and analysis.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. **Keyword Search:**
+   - Users can input keywords (comma-separated) to search for in the uploaded PDF files. The application identifies sentences containing these keywords and generates a report.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. **General Order Analysis:**
+   - The application performs a specialized analysis for General Order 95 (GO 95) and General Order 128 (GO 128) rules. It extracts and matches sentences against these rules and includes the definitions in the report.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. **Excel Report Generation:**
+   - After analysis, the application generates an Excel report with detailed information on the keyword occurrences, including the sentence context, page number, and any matched General Order rules and definitions.
 
-## Learn More
+5. **Interactive Help:**
+   - Users can access a help popup with a video tutorial explaining how to use the application.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### How It Works
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. **Upload PDF Files:**
+   - Use the drag-and-drop interface to upload PDF files for analysis. The application reads the text content of each page in the uploaded PDFs.
 
-### Code Splitting
+2. **Enter Keywords:**
+   - Enter the keywords you want to search for in the PDFs. Keywords should be comma-separated.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+3. **Perform Analysis:**
+   - Click on the "Normal Analysis" button to perform a standard keyword search.
+   - Click on the "General Order Analysis" button to perform a specialized analysis for GO 95 and GO 128 rules.
 
-### Analyzing the Bundle Size
+4. **Download Report:**
+   - After the analysis is complete, the application generates an Excel file containing the results. The report includes details such as the keyword, file name, page number, occurrence count, and any matched General Order rules and definitions.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Installation
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Clone the repository:
+   git clone https://github.com/your-username/autoCTR.git
+2) Navigate to the project directory:
+  cd pdf-processing-app
+3) Install dependencies:
+  npm install
+4) Start the application:
+  npm start
