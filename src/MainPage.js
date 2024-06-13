@@ -1,3 +1,4 @@
+// before we begin, import the necessary modules
 import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
@@ -7,7 +8,6 @@ import JSZip from 'jszip';
 import { PDFDocument, rgb } from 'pdf-lib';
 import { saveAs } from 'file-saver';
 import { Link } from 'react-router-dom';
-
 
 // setting the worker source for pdf.js
 GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.js`;
@@ -35,6 +35,11 @@ function MainPage() {
   };
 
   // function to parse facility data
+  /*
+  params: data (string)
+  output: array of objects containing sequence and facilityId
+  this function takes the facility data as a string, splits it by lines, and returns an array of objects containing sequence and facilityId
+  */
   const parseFacilityData = (data) => {
     return data.split('\n').map(line => {
       const [sequence, facilityId] = line.split('\t');
@@ -43,23 +48,37 @@ function MainPage() {
   };
 
   // function to handle dropping PDF files for splitting
+  /*
+  params: acceptedFiles (array of files)
+  output: none
+  this function handles the dropping of PDF files, reads the files, splits them into individual pages, and saves them as a zipped file
+  */
   const handleSplitDrop = (acceptedFiles) => {
     setSplitFiles(acceptedFiles);
     setLoading(true);
-
+    
+    // split the PDF files
     const splitPromises = acceptedFiles.map((file) => {
+      // return a promise for each file
       return new Promise((resolve) => {
+        // create a new file reader
         const reader = new FileReader();
         reader.onload = async () => {
+
+          // here, we are reading the file as an array buffer and then converting it to a Uint8Array and then passing it to the getDocument function.
           const typedArray = new Uint8Array(reader.result);
           const loadingTask = getDocument(typedArray);
           const pdf = await loadingTask.promise;
 
+          // create a new JSZip instance
           const zip = new JSZip();
           const pagePromises = [];
 
+          // loop through each page of the PDF
           for (let i = 1; i <= pdf.numPages; i++) {
+            // for each page, create a new canvas element and draw the page on it
             pagePromises.push(pdf.getPage(i).then(async (page) => {
+              // this is extracting the viewport of the page and then rendering it on a canvas element
               const scale = 2;
               const viewport = page.getViewport({ scale });
               const canvas = document.createElement('canvas');
@@ -74,7 +93,8 @@ function MainPage() {
 
               await page.render(renderContext).promise;
               const imgData = canvas.toDataURL('image/png');
-
+              
+              // p much the same as before, but now we are creating a new PDF document and adding the image to it
               const newPdfDoc = await PDFDocument.create();
               const page1 = newPdfDoc.addPage([viewport.width, viewport.height]);
               const img = await newPdfDoc.embedPng(imgData);
@@ -85,12 +105,14 @@ function MainPage() {
                 height: viewport.height,
               });
 
+              // saving the new PDF document as a blob and adding it to the zip file
               const pdfBytes = await newPdfDoc.save();
               const blob = new Blob([pdfBytes], { type: 'application/pdf' });
               zip.file(`page${i}.pdf`, blob);
             }));
           }
 
+          // after all pages have been processed, generate the zip file and save it
           Promise.all(pagePromises).then(() => {
             zip.generateAsync({ type: 'blob' }).then((content) => {
               saveAs(content, `${file.name.split('.pdf')[0]}_pages.zip`);
@@ -99,14 +121,21 @@ function MainPage() {
           });
         };
 
+        // read the file as an array buffer
         reader.readAsArrayBuffer(file);
       });
     });
 
+    // wait for all promises to resolve before setting loading to false
     Promise.all(splitPromises).then(() => setLoading(false));
   };
 
   // function to handle dropping PDF files for renaming
+  /*
+  params: acceptedFiles (array of files)
+  output: none
+  this function handles the dropping of PDF files, stores the files in state, and shows the facility dialog for input
+  */
   const handleRenameDrop = (acceptedFiles) => {
     setRenameFiles(acceptedFiles);
     setLoading(true);
@@ -114,33 +143,46 @@ function MainPage() {
   };
 
   // function to process facility data
+  /*
+  params: none
+  output: none
+  this function processes the facility data, matches it with the dropped PDF files, and sets the results in state
+  */
   const processFacilityData = () => {
     const facilityDataArray = parseFacilityData(facilityData);
     const facilityIds = facilityDataArray.map(item => item.facilityId);
 
+    // process the facility data
     const renamePromises = renameFiles.map((file) => {
+      // return a promise for each file
       return new Promise((resolve) => {
+        // create a new file reader
         const reader = new FileReader();
         reader.onload = async () => {
           const typedArray = new Uint8Array(reader.result);
           const loadingTask = getDocument(typedArray);
           const pdf = await loadingTask.promise;
 
+          // create a new JSZip instance
           const pagePromises = [];
-
+          
+          // in this, we are looping through each page of the PDF and extracting the text content
           for (let i = 1; i <= pdf.numPages; i++) {
             pagePromises.push(pdf.getPage(i).then(async (page) => {
               const textContent = await page.getTextContent();
               const lines = textContent.items.map(item => item.str.replace(/\s+/g, ''));
               const text = lines.join(' ');
 
+              // here, we are using a regex to match the facility id and then finding the corresponding sequence number from the facility data array
               const regex = /(\d{8}\.\d+)\s+(\d+)/;
+              // const regex = /(\d{8}\.\d{7})\s+(\d+)/; this is the bread and butter, and it will match the facility id and the sequence number
               const matches = text.match(regex);
               let facilityId = null;
               if (matches) {
                 facilityId = matches[1] + matches[2];
               }
 
+              // here, we are finding the corresponding sequence number from the facility data array
               const facilityMatch = facilityDataArray.find(item => item.facilityId === facilityId);
 
               const result = {
@@ -163,6 +205,7 @@ function MainPage() {
       });
     });
 
+    // wait for all promises to resolve before setting loading to false
     Promise.all(renamePromises).then((allResults) => {
       const flattenedResults = allResults.flat();
       setResults(flattenedResults);
@@ -172,10 +215,16 @@ function MainPage() {
   };
 
   // function to rename and zip files
+  /*
+  params: none
+  output: none
+  this function renames the PDF files based on the sequence number and zips them for download
+  */
   const renameAndZipFiles = () => {
     setLoading(true);
     const zip = new JSZip();
 
+    // group the results by sequence number
     const sequenceGroups = results.reduce((groups, result) => {
       if (result.sequence !== 'not found') {
         if (!groups[result.sequence]) {
@@ -186,10 +235,11 @@ function MainPage() {
       return groups;
     }, {});
 
+    // create a new PDF document for each sequence group
     const renamePromises = Object.keys(sequenceGroups).map(async (sequence) => {
       const pdfDoc = await PDFDocument.create();
       const sequenceResults = sequenceGroups[sequence];
-
+      // for each result in the sequence group, add the corresponding page to the new PDF document
       for (const result of sequenceResults) {
         const file = renameFiles.find(f => f.name === result.fileName);
         if (file) {
@@ -201,12 +251,12 @@ function MainPage() {
           pdfDoc.addPage(page);
         }
       }
-
+      // save the new PDF document as a blob and add it to the zip file
       const pdfBytes = await pdfDoc.save();
       const blob = new Blob([pdfBytes], { type: 'application/pdf' });
       zip.file(`SEQ${sequence}.pdf`, blob);
     });
-
+    // generate the zip file and save it
     Promise.all(renamePromises).then(() => {
       zip.generateAsync({ type: 'blob' }).then((content) => {
         saveAs(content, 'output.zip');
@@ -219,9 +269,15 @@ function MainPage() {
   };
 
   // function to add box with work order and sequence number to each page
+  /*
+  params: none
+  output: none
+  this function adds a box with the work order and sequence number to each page of the PDF and zips the edited files for download
+  */
   const addBoxToPages = async () => {
     setLoading(true);
 
+    // group the results by sequence number
     const sequenceGroups = results.reduce((groups, result) => {
       if (result.sequence !== 'not found') {
         if (!groups[result.sequence]) {
@@ -232,10 +288,12 @@ function MainPage() {
       return groups;
     }, {});
 
+    // create a new PDF document for each sequence group
     const editPromises = Object.keys(sequenceGroups).map(async (sequence) => {
       const pdfDoc = await PDFDocument.create();
       const sequenceResults = sequenceGroups[sequence];
-
+      
+      // for each result in the sequence group, add the corresponding page to the new PDF document
       for (const result of sequenceResults) {
         const file = renameFiles.find(f => f.name === result.fileName);
         if (file) {
@@ -246,6 +304,7 @@ function MainPage() {
           const [page] = await pdfDoc.copyPages(originalPdf, [pageIndex]);
           const newPage = pdfDoc.addPage(page);
 
+          // we are adding a red rectangle with the work order and sequence number to the bottom right corner of the page using the drawRectangle and drawText functions
           const rectWidth = 120;
           const rectHeight = 40;
           const rectX = newPage.getWidth() - rectWidth - 10;
@@ -276,18 +335,22 @@ function MainPage() {
         }
       }
 
+      // save the new PDF document as a blob
       const pdfBytes = await pdfDoc.save();
       const blob = new Blob([pdfBytes], { type: 'application/pdf' });
       return { blob, fileName: `SEQ${sequence}.pdf` };
     });
 
+    // generate the zip file and save it
     const editedFiles = await Promise.all(editPromises);
     const zip = new JSZip();
 
+    // add the edited files to the zip file
     editedFiles.forEach((file) => {
       zip.file(file.fileName, file.blob);
     });
 
+    // generate the zip file and save it
     zip.generateAsync({ type: 'blob' }).then((content) => {
       saveAs(content, 'edited_files.zip');
       setLoading(false);

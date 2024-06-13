@@ -5,9 +5,11 @@ import * as pdfjsLib from 'pdfjs-dist/webpack';
 import * as XLSX from 'xlsx';
 import './GeneralOrder.css';
 
+// setting the worker source for pdf.js
 GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.js`;
 
 function GeneralOrder() {
+  // state variables to store files and data
   const [files, setFiles] = useState([]);
   const [texts, setTexts] = useState({});
   const [keywords, setKeywords] = useState('');
@@ -16,6 +18,7 @@ function GeneralOrder() {
   const [go128Definitions, setGO128Definitions] = useState({});
   const [popupVisible, setPopupVisible] = useState(false); // New state for popup visibility
 
+  // useEffect to fetch and parse general order definitions on component mount
   useEffect(() => {
     fetch('/go95.txt')
       .then(response => response.text())
@@ -32,6 +35,12 @@ function GeneralOrder() {
       });
   }, []);
 
+  // function to parse general order definitions from text file
+  /*
+  params: text (string)
+  output: object with rule numbers as keys and definitions as values
+  this function parses the general order definitions from the given text
+  */
   const parseGODefinitions = (text) => {
     const lines = text.split('\n');
     const definitions = {};
@@ -48,6 +57,12 @@ function GeneralOrder() {
     return definitions;
   };
 
+  // function to handle dropping PDF files
+  /*
+  params: acceptedFiles (array of files)
+  output: none
+  this function handles the dropping of PDF files, reads and extracts text from them, and stores the text in state
+  */
   const onDrop = (acceptedFiles) => {
     setFiles(acceptedFiles);
     setLoading(true);
@@ -79,13 +94,26 @@ function GeneralOrder() {
     Promise.all(promises).then(() => setLoading(false));
   };
 
+  // function to find sentences containing a keyword
+  /*
+  params: text (string), keyword (string)
+  output: array of sentences containing the keyword
+  this function splits the text into sentences and returns the sentences containing the keyword
+  */
   const findSentences = (text, keyword) => {
     const sentences = text.split(/(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s/);
     return sentences.filter(sentence => sentence.toLowerCase().includes(keyword.toLowerCase()));
   };
 
+  // dropzone configuration
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
+  // function to handle keyword search
+  /*
+  params: none
+  output: none
+  this function searches for keywords in the extracted text and downloads the results as an Excel file
+  */
   const handleSearch = () => {
     const keywordsArray = keywords.split(',').map(kw => kw.trim());
     const results = [];
@@ -112,6 +140,12 @@ function GeneralOrder() {
     handleDownload(results);
   };
 
+  // function to handle general order analysis
+  /*
+  params: none
+  output: none
+  this function performs analysis specific to general order rules and downloads the results as an Excel file
+  */
   const handleGeneralOrderAnalysis = () => {
     const keywordsArray = keywords.split(',').map(kw => kw.trim());
     const results = [];
@@ -133,6 +167,12 @@ function GeneralOrder() {
     handleDownload(results);
   };
 
+  // function to analyze sentences for GO 95 rules
+  /*
+  params: sentence (string), fileName (string), page (number), occurrence (number), totalOccurrences (number)
+  output: array of results containing GO 95 rule analysis
+  this function analyzes a sentence for GO 95 rules and returns the results
+  */
   const analyzeGO95 = (sentence, fileName, page, occurrence, totalOccurrences) => {
     const results = [];
     const go95Match = sentence.match(/GO 95,? Rules? ([\d.]+)/);
@@ -153,6 +193,12 @@ function GeneralOrder() {
     return results;
   };
 
+  // function to analyze sentences for GO 128 rules
+  /*
+  params: sentence (string), fileName (string), page (number), occurrence (number), totalOccurrences (number)
+  output: array of results containing GO 128 rule analysis
+  this function analyzes a sentence for GO 128 rules and returns the results
+  */
   const analyzeGO128 = (sentence, fileName, page, occurrence, totalOccurrences) => {
     const results = [];
     const go128Match = sentence.match(/GO 128,? Rules? ([\d.]+)/);
@@ -173,6 +219,12 @@ function GeneralOrder() {
     return results;
   };
 
+  // function to handle downloading results as Excel file
+  /*
+  params: results (array of objects)
+  output: none
+  this function downloads the search or analysis results as an Excel file
+  */
   const handleDownload = (results) => {
     const worksheet = XLSX.utils.json_to_sheet(results.map(result => ({
       keyword: result.keyword,
@@ -211,8 +263,8 @@ function GeneralOrder() {
           <h2>Enter keywords to search (comma separated):</h2>
           <input type="text" value={keywords} onChange={e => setKeywords(e.target.value)} />
           <div>
-            <button className = "download-button" onClick={handleSearch}>Normal Analysis</button>
-            <button className = "download-button" onClick={handleGeneralOrderAnalysis}>General Order Analysis</button>
+            <button className="download-button" onClick={handleSearch}>Normal Analysis</button>
+            <button className="download-button" onClick={handleGeneralOrderAnalysis}>General Order Analysis</button>
           </div>
         </div>
       )}
